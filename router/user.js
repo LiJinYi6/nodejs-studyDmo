@@ -4,10 +4,13 @@ const userHandler=require('../router_handler/user')
 //创建路由对象
 const router=express.Router()
 
-//注册新用户
-router.post('/register',userHandler.register)
+const expressjoi=require('@escook/express-joi')
+const {reg_login_schema}=require('../schema/user')
 
-router.post('/login',userHandler.login)
+//注册新用户
+router.post('/register',expressjoi(reg_login_schema),userHandler.register)
+//登陆
+router.post('/login',expressjoi(reg_login_schema),userHandler.login)
 
 
 module.exports=router
