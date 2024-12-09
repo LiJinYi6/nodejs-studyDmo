@@ -1,6 +1,7 @@
 const express=require('express')
 const cors=require('cors')
 const app=express()
+//表单校验
 const joi=require('joi')
 //配置跨域
 app.use(cors())
@@ -42,7 +43,9 @@ app.use(
 //导入注册路由模块
 const userRouter=require('./router/user')
 app.use('/api',userRouter)
-
+//导入用户信息路由模块
+const userInfoRouter=require('./router/userinfo')
+app.use('/my',userInfoRouter)
 
 
 

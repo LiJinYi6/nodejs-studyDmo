@@ -3,8 +3,9 @@ const express=require('express')
 const userHandler=require('../router_handler/user')
 //创建路由对象
 const router=express.Router()
-
+//表单校验
 const expressjoi=require('@escook/express-joi')
+//表单校验规则
 const {reg_login_schema}=require('../schema/user')
 
 //注册新用户

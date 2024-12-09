@@ -16,6 +16,7 @@ exports.register=(req,res)=>{
         if(results.length>0){
             return res.cc('用户名被占用，请更换！！！')
         }
+        //给密码加密
         userInfo.password=bcryptjs.hashSync(userInfo.password,10)
         const sql='insert into users set ?'
         db.query(sql,{username:userInfo.username,password:userInfo.password},(err,results)=>{
@@ -41,6 +42,7 @@ exports.login=(req,res)=>{
     db.query(sql,userInfo.username,(err,results)=>{
         if(err)return res.cc(err)
         if(results.length<=0)return res.cc('登陆失败！！！用户名或密码有误')
+        //检查密码是否一致    
         const cmpRes=bcryptjs.compareSync(userInfo.password,results[0].password)
         if(cmpRes){
             const user={...results[0],password:'',avator:''}

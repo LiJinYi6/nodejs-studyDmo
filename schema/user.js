@@ -12,10 +12,21 @@ const password=joi
 .pattern(/^\S{6,12}$/)
 .required()
 
+const id=joi.number().integer().min(1).required()
+const nickname=joi.string().required()
+const email=joi.string().email().required()
+
 //定义验证对象
 exports.reg_login_schema={
     body:{
         username,
-        password
+        password,
+    }
+}
+exports.update_user_schema={
+    body:{
+        id,
+        nickname,
+        email
     }
 }
