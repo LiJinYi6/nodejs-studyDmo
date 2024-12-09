@@ -30,3 +30,9 @@ exports.update_user_schema={
         email
     }
 }
+exports.update_pwd_schema={
+    body:{
+        oldPwd:password,
+        newPwd:joi.not(joi.ref('oldPwd')).concat(password)
+    }
+}
