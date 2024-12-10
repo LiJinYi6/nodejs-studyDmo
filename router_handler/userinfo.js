@@ -1,7 +1,6 @@
+const { func } = require('joi')
 const db=require('../db/index')
 const bcryptjs=require('bcryptjs')
-
-
 
 
 
@@ -46,9 +45,19 @@ const updatePwd=(req,res)=>{
         res.cc('旧密码错误')
     })
 }
+const updateAvatar=(req,res)=>{
+    const sql="update users set avator=? where id=?"
+    db.query(sql,[req.body.avatar,req.auth.id],(err,results)=>{
+        if(err)return res.cc(err)
+        if(results.affectedRows!=1)return res.cc('更换头像失败')
+        // res.cc('更新成功',0)
+    })
+
+}
 
 module.exports={
     getUserInfo,
     updateUser,
     updatePwd,
+    updateAvatar,
 }

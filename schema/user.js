@@ -36,3 +36,8 @@ exports.update_pwd_schema={
         newPwd:joi.not(joi.ref('oldPwd')).concat(password)
     }
 }
+exports.update_avatar_schema={
+    body:{
+        avatar:joi.string().dataUri().required()
+    }
+}
